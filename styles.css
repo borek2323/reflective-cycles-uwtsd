@@ -151,6 +151,32 @@ select {
   border-radius: 0.5rem;
 }
 
+.model-diagram {
+  margin: 1.5rem auto 1.25rem;
+  text-align: center;
+}
+
+.model-diagram img {
+  display: block;
+  width: min(100%, 26rem);
+  height: auto;
+  margin-inline: auto;
+  padding: 0.5rem;
+  background: #fff;
+  border: 1px solid var(--border);
+}
+
+.model-diagram figcaption {
+  max-width: 40rem;
+  margin: 0.75rem auto 0;
+  color: var(--text-muted);
+  font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+  font-size: 0.9rem;
+  line-height: 1.45;
+  text-align: left;
+  overflow-wrap: anywhere;
+}
+
 .critical-use {
   margin: 3rem 0 3.5rem;
 }

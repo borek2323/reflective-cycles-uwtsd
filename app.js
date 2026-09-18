@@ -9,6 +9,17 @@ const MODELS = {
     name: "ERA Cycle",
     description:
       'The ERA cycle described by Jasper <a href="#ref-2">[2]</a> is a simple three-stage model of reflection: Experience, Reflection and Action.',
+    diagram: {
+      src: "images/era.png",
+      alt: "ERA cycle showing Experience, Reflection and Action.",
+      figureNumber: 1,
+      caption:
+        "Three-stage reflective cycle moving from Experience to Reflection to Action.",
+      citation: {
+        label: "[1]",
+        href: "#ref-1"
+      }
+    },
     stages: [
       {
         title: "Experience",
@@ -34,6 +45,17 @@ const MODELS = {
     name: "Driscoll's What Model",
     description:
       'Driscoll\'s model <a href="#ref-3">[3]</a> uses three questions derived from the reflective approach discussed in <a href="#ref-4">[4]</a>: What?, So what? and Now what?',
+    diagram: {
+      src: "images/driscoll.png",
+      alt: "Driscoll's What Model showing What?, So what? and Now what?.",
+      figureNumber: 2,
+      caption:
+        "Three-stage reflective model structured around What?, So what? and Now what?",
+      citation: {
+        label: "[1]",
+        href: "#ref-1"
+      }
+    },
     stages: [
       {
         title: "What?",
@@ -59,6 +81,17 @@ const MODELS = {
     name: "Kolb's Experiential Learning Cycle",
     description:
       'Kolb\'s experiential learning model <a href="#ref-5">[5]</a> describes learning from experience in four stages: concrete experience, reflective observation, abstract conceptualization and active experimentation.',
+    diagram: {
+      src: "images/kolb.png",
+      alt: "Kolb's experiential learning cycle showing concrete experience, reflective observation, abstract conceptualisation and active experimentation.",
+      figureNumber: 3,
+      caption:
+        "Four-stage experiential learning cycle moving through concrete experience, reflective observation, abstract conceptualisation and active experimentation.",
+      citation: {
+        label: "[1]",
+        href: "#ref-1"
+      }
+    },
     stages: [
       {
         title: "Concrete experience",
@@ -91,6 +124,17 @@ const MODELS = {
     name: "Gibbs' Reflective Cycle",
     description:
       'Gibbs\' Reflective Cycle <a href="#ref-6">[6]</a> has six stages: description, feelings, evaluation, analysis, conclusion and action plan.',
+    diagram: {
+      src: "images/gibbs.png",
+      alt: "Gibbs' Reflective Cycle showing Description, Feelings, Evaluation, Analysis, Conclusion and Action plan.",
+      figureNumber: 4,
+      caption:
+        "Six-stage reflective cycle moving through Description, Feelings, Evaluation, Analysis, Conclusion and Action plan.",
+      citation: {
+        label: "[1]",
+        href: "#ref-1"
+      }
+    },
     stages: [
       {
         title: "Description",
@@ -136,6 +180,7 @@ const modelSelect = document.getElementById("model-select");
 const modelPanel = document.getElementById("model-panel");
 const modelName = document.getElementById("model-name");
 const modelDescription = document.getElementById("model-description");
+const modelDiagram = document.getElementById("model-diagram");
 const stageProgress = document.getElementById("stage-progress");
 const stagesContainer = document.getElementById("stages");
 const btnBack = document.getElementById("btn-back");
@@ -202,11 +247,51 @@ function restoreSelect() {
   modelSelect.value = currentModelId();
 }
 
+function renderDiagram(model) {
+  modelDiagram.replaceChildren();
+
+  if (!model.diagram) {
+    return;
+  }
+
+  const figure = document.createElement("figure");
+  figure.className = "model-diagram";
+
+  const image = document.createElement("img");
+  image.src = model.diagram.src;
+  image.alt = model.diagram.alt;
+
+  const caption = document.createElement("figcaption");
+  const captionText = model.diagram.caption.endsWith(".")
+    ? model.diagram.caption.slice(0, -1)
+    : model.diagram.caption;
+  caption.appendChild(
+    document.createTextNode(
+      "Figure " +
+        model.diagram.figureNumber +
+        ". " +
+        model.name +
+        ". " +
+        captionText +
+        " "
+    )
+  );
+
+  const citation = document.createElement("a");
+  citation.href = model.diagram.citation.href;
+  citation.textContent = model.diagram.citation.label;
+  caption.append(citation, document.createTextNode("."));
+
+  figure.append(image, caption);
+  modelDiagram.appendChild(figure);
+}
+
 function renderModel(modelId) {
   const model = MODELS[modelId];
   modelPanel.dataset.modelId = modelId;
   modelName.textContent = model.name;
   modelDescription.innerHTML = model.description;
+  renderDiagram(model);
   stagesContainer.replaceChildren();
 
   model.stages.forEach(function (stage, index) {
@@ -255,6 +340,7 @@ function clearWorkspace() {
   delete modelPanel.dataset.modelId;
   stagesContainer.replaceChildren();
   outputContent.replaceChildren();
+  modelDiagram.replaceChildren();
   copyStatus.textContent = "";
   modelName.textContent = "";
   modelDescription.textContent = "";

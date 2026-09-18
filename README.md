@@ -18,6 +18,11 @@ styles.css
 app.js
 .nojekyll
 README.md
+images/
+  era.png
+  driscoll.png
+  kolb.png
+  gibbs.png
 ```
 
 There is no build step, bundler, or package manager.
@@ -44,6 +49,7 @@ Each model needs:
 
 - `name`
 - `description`
+- `diagram`, including its image path, alt text, figure number, caption, and citation
 - `stages`, each with a `title` and one or more `prompts`
 
 Keep academic wording as close paraphrases of the source used for that model. Do not invent extra pedagogical questions.
