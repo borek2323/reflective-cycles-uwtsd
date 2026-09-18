@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Reflective Practice Tool</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to main content</a>
+
+    <header>
+      <h1>Reflective Practice Tool</h1>
+    </header>
+
+    <main id="main">
+      <p class="privacy">Your responses are not saved. Closing or refreshing this page will remove your work.</p>
+
+      <p>
+        This tool guides you through a structured model of reflection.
+        Choose a model, write your own response at each stage, then generate a formatted version of that writing to copy elsewhere.
+        The tool does not rewrite or summarise your work.
+        The models are based on the University of Cambridge Reflective Practice Toolkit
+        <a href="#ref-1">[1]</a>.
+      </p>
+
+      <div class="field">
+        <label for="model-select">Reflective model</label>
+        <select id="model-select">
+          <option value="">Select a reflective model</option>
+        </select>
+      </div>
+
+      <noscript>
+        <p>This tool needs JavaScript in order to show the reflective stages.</p>
+      </noscript>
+
+      <section id="model-panel" hidden>
+        <h2 id="model-name"></h2>
+        <p id="model-description"></p>
+        <p id="stage-progress" class="progress" aria-live="polite"></p>
+        <div id="stages"></div>
+        <div class="actions">
+          <button type="button" id="btn-back">Back</button>
+          <button type="button" id="btn-continue">Continue</button>
+          <button type="button" id="btn-generate" hidden>Generate reflection</button>
+        </div>
+      </section>
+
+      <section id="output-panel" hidden>
+        <h2 id="output-heading" tabindex="-1">Your reflection</h2>
+        <div id="output-content"></div>
+        <div class="actions">
+          <button type="button" id="btn-copy">Copy reflection</button>
+          <button type="button" id="btn-edit">Edit responses</button>
+          <button type="button" id="btn-reset">Start again</button>
+        </div>
+        <p id="copy-status" class="status" aria-live="polite"></p>
+      </section>
+    </main>
+
+    <footer>
+      <h2>References</h2>
+      <p id="ref-1" class="reference">
+        [1] Cambridge University Libraries. “Models of reflection.” Reflective Practice Toolkit. Accessed: Sept. 18, 2026. [Online]. Available:
+        <a href="https://libguides.cam.ac.uk/reflectivepracticetoolkit/models">https://libguides.cam.ac.uk/reflectivepracticetoolkit/models</a>
+      </p>
+    </footer>
+
+    <script src="app.js"></script>
+  </body>
+</html>
