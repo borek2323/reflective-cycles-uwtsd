@@ -87,8 +87,7 @@ p {
 .privacy,
 .progress,
 .status,
-.prompts,
-.reference {
+.prompts {
   color: var(--text-muted);
 }
 
@@ -103,6 +102,7 @@ a {
 
 a:hover {
   text-decoration-thickness: 2px;
+  text-underline-offset: 0.15em;
 }
 
 .field {
@@ -149,6 +149,41 @@ select {
   margin: 0 0 2rem;
   padding: 1.25rem 1.25rem 1.4rem;
   border-radius: 0.5rem;
+}
+
+.critical-use {
+  margin: 3rem 0 3.5rem;
+}
+
+.critical-use > p {
+  margin-bottom: 1.5rem;
+}
+
+.critical-cards {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  margin: 1.5rem 0;
+}
+
+.critical-card {
+  padding: 1.15rem 1.25rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 0.5rem;
+}
+
+.critical-card h3 {
+  margin-bottom: 0.85rem;
+}
+
+.critical-card ul {
+  margin: 0;
+  padding-left: 1.25rem;
+}
+
+.critical-card li + li {
+  margin-top: 0.55rem;
 }
 
 .progress {
@@ -205,10 +240,17 @@ button {
   background: transparent;
   border: 1px solid var(--border);
   border-radius: 0.35rem;
+  cursor: pointer;
 }
 
 button:disabled {
   opacity: 0.5;
+  cursor: not-allowed;
+}
+
+button:not(:disabled):hover {
+  border-color: var(--accent);
+  background: var(--surface);
 }
 
 #btn-continue,
@@ -217,6 +259,12 @@ button:disabled {
   color: var(--accent-ink);
   background: var(--accent);
   border-color: var(--accent);
+}
+
+#btn-continue:not(:disabled):hover,
+#btn-generate:not(:disabled):hover,
+#btn-copy:not(:disabled):hover {
+  filter: brightness(1.08);
 }
 
 .output-block {
@@ -236,11 +284,36 @@ button:disabled {
 }
 
 footer {
-  padding: 0.5rem 0 3rem;
+  padding: 2rem 0 3rem;
+  border-top: 1px solid var(--border);
 }
 
-.reference {
+.references-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
   font-size: 0.95rem;
+}
+
+.references-list li {
+  margin-bottom: 1rem;
+  padding-left: 2.25rem;
+  overflow-wrap: anywhere;
+  text-indent: -2.25rem;
+}
+
+.reference-number {
+  display: inline-block;
+  width: 2.25rem;
+  text-indent: 0;
+}
+
+.copyright {
+  max-width: 42rem;
+  margin: 2rem 0 0;
+  color: var(--text-muted);
+  font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+  font-size: 0.85rem;
 }
 
 :focus-visible {
@@ -266,5 +339,9 @@ footer {
 
   button {
     flex: 1 1 auto;
+  }
+
+  .critical-cards {
+    grid-template-columns: 1fr;
   }
 }

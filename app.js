@@ -1,13 +1,14 @@
 /* MODEL DATA — edit academic content here only.
    Source: Cambridge University Libraries, Models of reflection,
-   Reflective Practice Toolkit.
-   Keep wording as close, concise paraphrases of that source. */
+   Reflective Practice Toolkit. (https://libguides.cam.ac.uk/reflectivepracticetoolkit/models)
+   Keep wording as close, concise paraphrases of that source.
+   Model descriptions may contain links to the references below. */
 
 const MODELS = {
   era: {
     name: "ERA Cycle",
     description:
-      "The ERA cycle (Jasper, 2013) is a simple three-stage model of reflection: Experience, Reflection and Action.",
+      'The ERA cycle described by Jasper <a href="#ref-2">[2]</a> is a simple three-stage model of reflection: Experience, Reflection and Action.',
     stages: [
       {
         title: "Experience",
@@ -32,7 +33,7 @@ const MODELS = {
   driscoll: {
     name: "Driscoll's What Model",
     description:
-      "Driscoll's model uses three questions, based on Borton (1970): What?, So what? and Now what?",
+      'Driscoll\'s model <a href="#ref-3">[3]</a> uses three questions derived from the reflective approach discussed in <a href="#ref-4">[4]</a>: What?, So what? and Now what?',
     stages: [
       {
         title: "What?",
@@ -57,10 +58,11 @@ const MODELS = {
   kolb: {
     name: "Kolb's Experiential Learning Cycle",
     description:
-      "Kolb's model (1984) describes learning from experience in four stages: concrete experience, reflective observation, abstract conceptualization and active experimentation.",
+      'Kolb\'s experiential learning model <a href="#ref-5">[5]</a> describes learning from experience in four stages: concrete experience, reflective observation, abstract conceptualization and active experimentation.',
     stages: [
       {
         title: "Concrete experience",
+        displayTitle: "Concrete experience (from current term)",
         prompts: [
           "Describe the experience, whether it is new or a repeat of something that has happened before."
         ]
@@ -88,7 +90,7 @@ const MODELS = {
   gibbs: {
     name: "Gibbs' Reflective Cycle",
     description:
-      "Gibbs' Reflective Cycle has six stages: description, feelings, evaluation, analysis, conclusion and action plan.",
+      'Gibbs\' Reflective Cycle <a href="#ref-6">[6]</a> has six stages: description, feelings, evaluation, analysis, conclusion and action plan.',
     stages: [
       {
         title: "Description",
@@ -204,7 +206,7 @@ function renderModel(modelId) {
   const model = MODELS[modelId];
   modelPanel.dataset.modelId = modelId;
   modelName.textContent = model.name;
-  modelDescription.textContent = model.description;
+  modelDescription.innerHTML = model.description;
   stagesContainer.replaceChildren();
 
   model.stages.forEach(function (stage, index) {
@@ -219,7 +221,7 @@ function renderModel(modelId) {
     const heading = document.createElement("h3");
     heading.id = "stage-heading-" + index;
     heading.tabIndex = -1;
-    heading.textContent = stage.title;
+    heading.textContent = stage.displayTitle || stage.title;
 
     const prompts = document.createElement("ul");
     prompts.className = "prompts";
@@ -232,7 +234,7 @@ function renderModel(modelId) {
     const label = document.createElement("label");
     label.htmlFor = textareaId;
     label.className = "visually-hidden";
-    label.textContent = stage.title;
+    label.textContent = stage.displayTitle || stage.title;
 
     const textarea = document.createElement("textarea");
     textarea.id = textareaId;
